@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -44,7 +42,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final prefix = "af99-122-179-207-116.ngrok-free.app";
   final prefix2 = "signup.stoxkart.com";
   final prefix3 = "uatapp.smcindiaonline.org:7443";
@@ -52,12 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
       "https://$prefix3/e-kyc/assisted?at=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJkOWM0ZDZkZC02OGI2LTQ4ZDctOTA2YS0yM2M5NzEzM2NiNWIiLCJkZXZpY2VfaWQiOiIxMWJmZjFlMy04NmQ2LTQzZDUtODlkNi05YTQ0NjNiZTM1ZDYiLCJzb3VyY2UiOiJ3ZWIiLCJwYXJ0bmVyX2lkIjoic3RveGthcnQiLCJtb2JpbGVfbnVtYmVyIjoiODQ0NzYzNzMyMiIsImV4cCI6MTY4Njg3ODQzNX0.vil-eJyF3XFZFv8i92sW3eqxWn_fPhw8sliH0f29xGQ&step=selfie_verification&mobile=true";
   final urls = "http://192.168.1.8:4006";
   late final WebViewController _ct;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   Future<List<String>> _pickFile(
       webview_flutter_android.FileSelectorParams params) async {
@@ -97,13 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
           onHidePrompt: () {});
     }
       if (_ct.platform is webview_flutter_ios.WebKitWebViewController) {
-      print("reached here");
       final a = _ct.platform as webview_flutter_ios.WebKitWebViewController;
       a.setPlatformNavigationDelegate(
         webview_flutter_ios.WebKitNavigationDelegate(
           const PlatformNavigationDelegateCreationParams(),
         )..setOnNavigationRequest((navigationRequest) async {
-            print("reached here 1");
             return NavigationDecision.navigate;
           }),
       );
